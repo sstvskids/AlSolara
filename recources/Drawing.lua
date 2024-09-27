@@ -55,19 +55,19 @@ local objectConfigs = {
     end
 }
 
-function Drawing.new(objectType)
+getgenv().Drawing.new = function(objectType)
     return objectConfigs[objectType] and objectConfigs[objectType]() or nil
 end
 
-function Drawing.setPosition(object, x, y)
+getgenv().Drawing.setPosition = function(object, x, y)
     object.Position = UDim2.new(0, x, 0, y)
 end
 
-function Drawing.setSize(object, width, height)
+getgenv().Drawing.setSize = function(object, width, height)
     object.Size = UDim2.new(0, width, 0, height)
 end
 
-function Drawing.setColor(object, color)
+getgenv().Drawing.setColor = function(object, color)
     if object:IsA("Frame") or object:IsA("ImageLabel") then
         object.BackgroundColor3 = color
     elseif object:IsA("TextLabel") then
@@ -75,13 +75,13 @@ function Drawing.setColor(object, color)
     end
 end
 
-function Drawing.setText(object, text)
+getgenv().Drawing.setText = function(object, text)
     if object:IsA("TextLabel") then
         object.Text = text
     end
 end
 
-function Drawing.addToParent(object, parent)
+getgenv().Drawing.addToParent = function(object, parent)
     object.Parent = parent
 end
 
