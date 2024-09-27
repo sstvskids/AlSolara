@@ -1,5 +1,5 @@
 local LocalPlayer = game.Players.LocalPlayer
-local org = "Liquid"
+
 local ReplicatedStorageService = game:GetService("ReplicatedStorage")
 local CollectionService = game:GetService("CollectionService")
 local UserInputService = game:GetService("UserInputService")
@@ -648,13 +648,13 @@ function AlSploitLibrary:CreateTab(Name)
 						if AlSploitSettings[Name].Value == true then
 							Toggle.TextColor3 = Color3.new(1, 1, 1)
 							
-							CreateNotification(3, Name .. " Has been enabled")
+							CreateNotification(3, Name .. " Has Been Toggled Off")
 						end
 
 						if AlSploitSettings[Name].Value == false then
 							Toggle.TextColor3 = CurrentAlSploitToggleColor
 							
-							CreateNotification(3, Name .. " Has been enabled")
+							CreateNotification(3, Name .. " Has Been Toggled On")
 						end
 
 						AlSploitSettings[Name].Value = not AlSploitSettings[Name].Value
@@ -1832,10 +1832,7 @@ local function FindNearestEntity(MaxDistance)
 				end
 			end
 		end
-	end)
-	task.spawn(function()
-	
-										
+	end)	
 
 	task.spawn(function()
 		for i, v in next, CollectionService:GetTagged("jellyfish") do
@@ -2537,7 +2534,7 @@ end)
 
 task.spawn(function()
 	local InstantKill = CombatTab:CreateToggle({
-		Name = "InstaKill",
+		Name = "InstantKill",
 
 		Function = function()
 			repeat
@@ -2588,7 +2585,7 @@ task.spawn(function()
 	})
 
 	Method:CreateToggle({
-		Name = "Infernal Saber",
+		Name = "InfernalSaber",
 
 		Function = function() end,
 
@@ -2596,7 +2593,7 @@ task.spawn(function()
 	})
 
 	Method:CreateToggle({
-		Name = "Sky Scythe",
+		Name = "SkyScythe",
 
 		Function = function() end,
 
@@ -3041,7 +3038,7 @@ task.spawn(function()
 	end)
 end)
 
-task.spawn(function()
+--[[task.spawn(function()
 	local AntiHit = CombatTab:CreateToggle({
 		Name = "AntiHit",
 
@@ -3115,7 +3112,7 @@ task.spawn(function()
 		MaximumValue = 19,
 		DefaultValue = 19
 	})
-end)
+end)--]]
 
 task.spawn(function()
 	local OldSwingSwordAtMouse
@@ -3272,7 +3269,7 @@ end)
 
 task.spawn(function()
 	local KnockbackTp = BlatantTab:CreateToggle({
-		Name = "KnockbackTp", -- bad
+		Name = "KnockbackTp",
 
 		Function = function() end,
 
@@ -3557,21 +3554,21 @@ end)
 
 task.spawn(function()
 	local InstantWin = BlatantTab:CreateToggle({
-		Name = "EmptyGameTP",
+		Name = "InstantWin",
 
 		Function = function()
 			repeat 
 				task.wait()
 
 				if AlSploitSettings.InstantWin.Value == true and GetMatchState() == 0 then					
-					CreateNotification(5, "Waiting For Match To Start For EmptyGameTP") 
+					CreateNotification(5, "Waiting For Match To Start For InstantWin") 
 
 					task.wait(5)
 				end
 			until GetMatchState() ~= 0 or AlSploitSettings.InstantWin.Value == false or shared.AlSploitUnInjected == true
 
 			if AlSploitSettings.InstantWin.Value == true then
-				CreateNotification(3, "Starting EmptyGameTP")
+				CreateNotification(3, "Starting InstantWin")
 
 				AlSploitSettings.InstantWin.Value = false
 
@@ -3689,7 +3686,7 @@ task.spawn(function()
 end)
 
 task.spawn(function()	
-	local MaxFlyTime = 2.5
+	local MaxFlyTime = 2.3
 	local FlyTime = tick()
 	
 	local FlyDown
@@ -4112,11 +4109,10 @@ task.spawn(function()
 				local MessageTable = {
 					Message1 = "3+ Years Now And The Anticheat Is Still The Same | AlSploit On Top",
 					Message2 = "Clowns Are The Only Ones We Eliminate | AlSploit On Top",
-					Message3 = "EmptyGameTP Is So Fun 😂 | AlSploit On Top",
+					Message3 = "InstantWin Is So Fun 😂 | AlSploit On Top",
 					Message4 = "Best Anticheat Ever ™️ | AlSploit On Top",
 					Message5 = "Get Back To Scripting, Skids | AlSploit On Top",
-					Message6 = "Voidware Has The Best Logger!!! | AlSploit On Top",
-					Message7 = "Get back to making a good staffdetector, skids. | AlSploit"																																																																																												
+					Message6 = "Voidware Has The Best Logger!!! | AlSploit On Top"
 				}
 
 				for i, v in next, MessageTable do
@@ -6035,7 +6031,7 @@ task.spawn(function()
 
 		Function = function()
 			if AlSploitSettings.AutoInject.Value == true and not QueueOnTeleport then
-				CreateNotification(3, "Your executor does not support AutoInject")
+				CreateNotification(3, "Your Executor Does Not Support AutoInject")
 			end
 		end,
 
@@ -6089,4 +6085,4 @@ end)
 --Things to fix because i have nothing else to do :shrug:
 
 --indicator fix
--- it works :shrug:
+--fix esp
