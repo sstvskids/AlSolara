@@ -1,7 +1,7 @@
 local debug = {}
 local upvaluesRegistry = {}
 
-local function getModule(modulePath)
+getgenv().getModule = function(modulePath)
     local status, module = pcall(require, modulePath)
     if status then
         return module
@@ -10,7 +10,7 @@ local function getModule(modulePath)
     end
 end
 
-local function getFuncFromModule(module, funcName)
+getgenv().getFuncFromModule = function(module, funcName)
     if module then
         local func = module[funcName]
         if func and type(func) == "function" then
@@ -20,7 +20,7 @@ local function getFuncFromModule(module, funcName)
     return nil
 end
 
-function debug.getupvalue(modulePath, funcName, index)
+getgenv().debug.getupvalue = function(modulePath, funcName, index)
     local module = getModule(modulePath)
     if not module then
         return nil, "Failed to require module: " .. tostring(modulePath)
@@ -39,7 +39,7 @@ function debug.getupvalue(modulePath, funcName, index)
     end
 end
 
-function debug.setupvalues(func, upvalues)
+getgenv().debug.setupvalues = function(func, upvalues)
     if func and type(func) == "function" then
         upvaluesRegistry[func] = upvalues
     else
@@ -47,7 +47,7 @@ function debug.setupvalues(func, upvalues)
     end
 end
 
-function debug.getupvalues(func)
+getgenv().debug.getupvalues = function(func)
     if func and type(func) == "function" then
         return upvaluesRegistry[func] or {}
     else
@@ -55,7 +55,7 @@ function debug.getupvalues(func)
     end
 end
 
-function debug.getupvalue3(modulePath, funcName, index)
+getgenv().debug.getupvalue3 = function(modulePath, funcName, index)
     local module = getModule(modulePath)
     if not module then
         return nil, "Failed to require module: " .. tostring(modulePath)
